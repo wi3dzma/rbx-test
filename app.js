@@ -1,7 +1,3 @@
-/**
- * Module dependencies.
- */
-
 var express = require('express')
   , http = require('http')
   , swig = require('swig') // http://paularmstrong.github.io/swig/docs/
@@ -11,6 +7,7 @@ var express = require('express')
 var app = express();
 
 // enable swig template engine
+
 app.engine('html', swig.renderFile);
 app.set('view engine', 'html');
 app.set('views', __dirname + '/views');
@@ -26,9 +23,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 // development only
 if ('development' == app.get('env')) {
   app.use(express.errorHandler());
+}
 
 app.get('/', actions.list);
-app.get('/del', acrions.del);
+app.get('/del', actions.del);
 app.post('/add', actions.add);
 
 http.createServer(app).listen(app.get('http port'), function(){

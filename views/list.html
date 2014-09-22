@@ -3,5 +3,24 @@
 {% block title %} User list {% endblock %}
 
 {% block main %}
-  {{ nazwa }} 
+<table>
+  {% for x in data %} 
+  <tr>
+    <td>{{x.imie}}</td>
+    <td>{{x.nazwisko}}</td>
+    <td>{{x.email}}</td>
+    <td><a href="/del?id={{x.id}}">delete</a></td>
+  </tr>
+  {% endfor %}
+</table>
+
+  <h3>Dodaj uzytkownika</h3>
+  <form method="post" action="/add">
+   <input type="text" name="imie" placeholder="Imie"><br>
+   <input type="text" name="nazwisko" placeholder="Nazwisko"><br>
+   <input type="text" name="email" placeholder="Email"><br>
+   <input type="text" name="pass" placeholder="Haslo"><br>
+   <input type="submit" value="Wyslij">
+  </form>
+
 {% endblock %}
